@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rosy's Scripts Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #18181b;
+      color: #f3f4f6;
+      margin: 0;
+      padding: 32px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 32px;
+      color: #e0e7ef;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #232329;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px #1e293b30;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .label {
+      font-weight: bold;
+      color: #7dd3fc;
+      margin-bottom: 4px;
+    }
+    .value {
+      background: #27272a;
+      border-radius: 4px;
+      padding: 8px;
+      font-family: monospace;
+      word-break: break-all;
+      margin-bottom: 8px;
+      font-size: 0.98em;
+      color: #e0e7ef;
+    }
+    .copy-btn {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 0;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .copy-btn:active {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Copyable Grid Hub</h1>
+  <div class="grid" id="grid"></div>
+  <script>
+    const items = [
+      { label: "Mr Bean Admin ( OLD )", value: "require(92684888032460)({Owners = {\"username\"}})" },
+      { label: "Senstation (SAFE)", value: "require(100263845596551)(\"urname\", ColorSequence.new(Color3.fromRGB(71, 148, 253), Color3.fromRGB(71, 253, 160)), \"Safe\")" },
+      { label: "Senstation (STANDARD)", value: "require(100263845596551)(\"urname\", ColorSequence.new(Color3.fromRGB(71, 148, 253), Color3.fromRGB(71, 253, 160)), \"Standard\")" },
+      { label: "Senstation (SERVERSIDE)", value: "require(100263845596551)(\"urname\", ColorSequence.new(Color3.fromRGB(71, 148, 253), Color3.fromRGB(71, 253, 160)), \"Serverside\")" },
+      { label: "Stummy's Guns (R6)", value: "require(7633712551)(\"yourusername\",\"Guns\")" },
+      { label: "R6", value: "require(3436957371):r6(\"user\")" },
+      { label: "MauDex Explorer", value: "require(15827159924).MauDex(\"user\")"},
+      { label: "John Doe (R6)", value: "require(2845929020).ooga(\"username\")"},
+    ];
+
+    const grid = document.getElementById('grid');
+    items.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      // Create label
+      const labelDiv = document.createElement('div');
+      labelDiv.className = 'label';
+      labelDiv.textContent = item.label;
+
+      // Create value
+      const valueDiv = document.createElement('div');
+      valueDiv.className = 'value';
+      valueDiv.textContent = item.value;
+
+      // Create button
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.addEventListener('click', function(){
+        navigator.clipboard.writeText(item.value).then(() => {
+          const oldText = btn.textContent;
+          btn.textContent = "Copied!";
+          setTimeout(() => btn.textContent = oldText, 1200);
+        });
+      });
+
+      card.appendChild(labelDiv);
+      card.appendChild(valueDiv);
+      card.appendChild(btn);
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
